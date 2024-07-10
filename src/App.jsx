@@ -1,35 +1,30 @@
 import { useState } from "react";
 import "./App.css";
 import { puppyList } from "./data.js";
+import "./extra.css";
 
 function App() {
-  const [puppies, setPuppies] = useState(puppyList); //const[value you are storing, a function you can use to reset the value]
-  //useState is a hook - it needs a default value -- here, the (puppyList) array, from the data.js is the default value
+  const [puppies, setPuppies] = useState(puppyList);
   const [featPupId, setFeatPupId] = useState(null);
-  function handleClick() {
-    // some logic here
-  }
-  // console.log("Puppy List: ", puppies);
+  function handleClick() {}
+
   const featuredPup = puppies.find((pup) => pup.id === featPupId);
   return (
     <>
       <div className="App">
         {" "}
-        {
-          // use className instead of class when in jsx
-          puppies.map((puppy) => {
-            return (
-              <p
-                onClick={() => {
-                  setFeatPupId(puppy.id);
-                }}
-                key={puppy.id}
-              >
-                {puppy.name}
-              </p>
-            ); //key maintains the integrity of the order of elements
-          })
-        }
+        {puppies.map((puppy) => {
+          return (
+            <p
+              onClick={() => {
+                setFeatPupId(puppy.id);
+              }}
+              key={puppy.id}
+            >
+              {puppy.name}
+            </p>
+          );
+        })}
         {featPupId && (
           <div className="featured">
             <h2>{featuredPup.name}</h2>
@@ -43,5 +38,5 @@ function App() {
     </>
   );
 }
-// {} in <div> let us write .js code
+
 export default App;
